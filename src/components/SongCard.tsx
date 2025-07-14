@@ -8,6 +8,7 @@ type Props = {
     id: number;
     song: string;
     artist: string;
+    poster: string; // URL to the song cover image
   };
 };
 
@@ -20,7 +21,7 @@ export default function SongCard({ highlighted, item }: Props) {
     >
       {/* Song Cover Image */}
       <img
-        src="./assets/Justin-Bieber-Baby.webp"
+        src={item.poster}
         alt="Song"
         className="rounded-md mb-2 w-48"
       />
