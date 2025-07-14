@@ -9,7 +9,6 @@ import Login from "../views/Pages/Login/Index";
 import Home from "../views/Pages/Home";
 import UnAuthorizedAccess from "../views/Pages/UnAuthorised";
 import PageNotFound from "../views/Pages/PageNotFound";
-import SchedularTask from "../views/Pages/Tasks/SchedularTask";
 
 const RouteWrapper = ({ element }: { element: any }) => {
   const location = useLocation();
@@ -46,12 +45,6 @@ function RouterComponent() {
           element: <Home />,
           caseSensitive: true,
         },
-        {
-          path: "/tasks",
-          element: <SchedularTask />,
-          caseSensitive: true,
-        },
-        
         {
           path: "unauthorized",
           element: <UnAuthorizedAccess />,
