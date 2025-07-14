@@ -4,6 +4,7 @@ import CategoryTag from "../../../components/CategoryTag";
 import { FaHeart } from "react-icons/fa";
 import { FiMoreHorizontal } from "react-icons/fi";
 import recentlyPlayed from "../../../data/recentlyPlayed.json";
+import AudioPlayer from "../MusicPlayer/AudioPlayer";
 // import playButton from "../../../assets/playButton.svg";
 
 export default function MusicDashboard() {
@@ -195,6 +196,7 @@ export default function MusicDashboard() {
           </div>
         </div>
       </div>
+      <AudioPlayer />
     </div>
   );
 }

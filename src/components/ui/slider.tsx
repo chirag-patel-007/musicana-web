@@ -4,10 +4,10 @@ import React from "react";
 export const Slider = ({ min, max, step, value, onValueChange }) => (
   <RadixSlider.Root
     className="relative flex items-center select-none touch-none w-full h-5"
+    orientation="vertical"
     min={min}
     max={max}
     step={step}
-    /* defaultValue={defaultValue} */
     value={value}
     onValueChange={onValueChange}
   >
