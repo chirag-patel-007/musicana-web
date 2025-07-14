@@ -292,7 +292,11 @@ export default function AudioPlayer() {
                 onClick={toggleReverb}
                 className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-500"
               >
-                {reverbEnabled ? "Disable Reverb" : "Enable Reverb"}
+                {reverbEnabled ? (
+                  <img src="./assets/DisableReverb.svg" />
+                ) : (
+                  <img src="./assets/Reverb.svg" />
+                )}
               </button>
             </div>
 

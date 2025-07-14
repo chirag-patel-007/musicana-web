@@ -4,6 +4,7 @@ import CategoryTag from "../../../components/CategoryTag";
 import { FaHeart } from "react-icons/fa";
 import { FiMoreHorizontal } from "react-icons/fi";
 import recentlyPlayed from "../../../data/recentlyPlayed.json";
+import songList from "../../../data/songList.json";
 import AudioPlayer from "../MusicPlayer/AudioPlayer";
 // import playButton from "../../../assets/playButton.svg";
 
@@ -79,28 +80,24 @@ export default function MusicDashboard() {
 
           {/* Song List */}
           <div className="space-y-2">
-            {[0, 1, 2].map((i) => (
+            {songList.map((ele, i) => (
               <div
                 key={i}
                 className="flex justify-between items-center py-2 border-b border-gray-700"
               >
-                <span>#1</span>
+                <span>{1+i++}</span>
                 <div className="flex items-center gap-2">
-                  <img
-                    src="https://via.placeholder.com/40"
-                    alt="Song"
-                    className="w-10 h-10 rounded"
-                  />
+                  <img src={ele.img} alt="Song" className="w-10 h-10 rounded" />
                   <div>
-                    <p>Song name</p>
+                    <p>{ele.songname}</p>
                   </div>
                 </div>
                 <p>
-                  <p className="text-xs">Artist name</p>
+                  <p className="text-xs">{ele.artistname}</p>
                 </p>
-                <p>3:33</p>
+                <p>{ele.duration}</p>
                 <div className="flex items-center gap-2">
-                  <span>128</span>
+                  <span>{ele.like}</span>
                   <FaHeart className="text-blue-400" />
                 </div>
                 <FiMoreHorizontal />
