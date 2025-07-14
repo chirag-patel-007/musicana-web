@@ -1,22 +1,20 @@
-import { Layout, theme } from "antd";
-import { Content } from "antd/es/layout/layout";
+import { Layout } from "antd";
 import { useState } from "react";
-import FooterComponent from "./Footer";
-import HeaderComponent from "./Header";
 import Sidebar from "./Sidebar";
 import React from "react";
 
 function ContainerComponent(props: any) {
   const { children } = props;
 
-  const [collapsed, setCollapsed] = useState(false);
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+  const [collapsed] = useState(false);
+
   return (
     <Layout hasSider>
+       <Sidebar collapsed={collapsed} />
       <Layout style={{ height: "100%" }}>
-        <div>{children}</div>
+        <div>
+          {children}
+        </div>
       </Layout>
     </Layout>
   );

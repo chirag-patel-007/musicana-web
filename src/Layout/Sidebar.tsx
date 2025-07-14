@@ -1,5 +1,4 @@
 import {
-  UserAddOutlined,
   UserOutlined,
   ScheduleOutlined,
 } from "@ant-design/icons";
@@ -36,7 +35,7 @@ function Sidebar(props: any) {
     {
       key: "/home",
       icon: <UserOutlined />,
-      label: "Audio",
+      label: "Home",
       onClick: () => navigate("/home"),
     },
     {
@@ -45,18 +44,12 @@ function Sidebar(props: any) {
       label: "Explorer",
       onClick: () => navigate("/explorer"),
     },
-    // {
-    //   key: "/users",
-    //   icon: <UserAddOutlined />,
-    //   label: "Users",
-    //   onClick: () => navigate("/users"),
-    // },
 
     {
-      key: "/tasks",
+      key: "/artists",
       icon: <ScheduleOutlined />,
-      label: "Tasks ",
-      onClick: () => navigate("/tasks"),
+      label: "Top Artists",
+      onClick: () => navigate("/artists"),
     },
   ];
 
@@ -73,7 +66,6 @@ function Sidebar(props: any) {
       setCurrent(parentKey);
     }
 
-    //console.log("parentKey: ", parentKey);
     if (parentKey) {
       setOpenKeys([parentKey]);
     }
