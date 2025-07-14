@@ -7,6 +7,7 @@ import ContainerComponent from "./Container";
 import Home from "../views/Pages/Home";
 import UnAuthorizedAccess from "../views/Pages/UnAuthorised";
 import PageNotFound from "../views/Pages/PageNotFound";
+import Dashboard from "../views/Pages/Dashboard/index";
 
 const RouteWrapper = ({ element }: { element: any }) => {
   const location = useLocation();
@@ -46,6 +47,11 @@ function RouterComponent() {
         {
           path: "unauthorized",
           element: <UnAuthorizedAccess />,
+          caseSensitive: true,
+        },
+        {
+          path: "/explorer",
+          element: <Dashboard />,
           caseSensitive: true,
         },
         {
