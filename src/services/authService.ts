@@ -1,5 +1,5 @@
 // src/redux/auth/authService.ts
-import api from "./AuthAgent";
+import api from "./authAgent";
 
 const login = async (credentials: { username: string; password: string }) => {
   const response = await api.post("/auth/login", credentials);
