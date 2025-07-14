@@ -257,7 +257,7 @@ export default function AudioPlayer() {
           {/* Right Controls */}
           <div className="flex items-center gap-3 relative">
             {/* Speed Button */}
-            <div className="relative">
+            <div className="relative flex">
               <button
                 onClick={toggleSpeedSlider}
                 className="text-sm text-white bg-gray-700 px-2 py-1 rounded hover:bg-gray-600"
