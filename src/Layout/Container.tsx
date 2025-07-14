@@ -17,9 +17,9 @@ function ContainerComponent(props: any) {
     <Layout hasSider>
       <Sidebar collapsed={collapsed} />
       <Layout style={{ height: "100%" }}>
-        <HeaderComponent collapsed={collapsed} setCollapsed={setCollapsed} />
+        {/* <HeaderComponent collapsed={collapsed} setCollapsed={setCollapsed} /> */}
         <div /* className="h-100" */>
-          <Content
+          {/* <Content
             style={{
               margin: "16px 16px",
               padding: 16,
@@ -28,11 +28,11 @@ function ContainerComponent(props: any) {
               borderRadius: borderRadiusLG,
               marginBottom: 100,
             }}
-          >
-            {children}
-          </Content>
+          > */}
+          {children}
+          {/* </Content> */}
         </div>
-        <FooterComponent />
+        {/* <FooterComponent /> */}
       </Layout>
     </Layout>
   );
