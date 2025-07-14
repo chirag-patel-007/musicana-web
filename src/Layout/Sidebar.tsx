@@ -39,6 +39,12 @@ function Sidebar(props: any) {
       label: "Audio",
       onClick: () => navigate("/home"),
     },
+    {
+      key: "/explorer",
+      icon: <UserOutlined />,
+      label: "Explorer",
+      onClick: () => navigate("/explorer"),
+    },
     // {
     //   key: "/users",
     //   icon: <UserAddOutlined />,
