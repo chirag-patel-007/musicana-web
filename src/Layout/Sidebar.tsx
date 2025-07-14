@@ -36,7 +36,7 @@ function Sidebar(props: any) {
     {
       key: "/home",
       icon: <UserOutlined />,
-      label: "Home",
+      label: "Audio",
       onClick: () => navigate("/home"),
     },
     // {

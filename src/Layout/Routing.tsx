@@ -4,8 +4,6 @@ import { Navigate, Outlet, useLocation, useRoutes } from "react-router-dom";
 
 import AuthHandler from "./AuthHandler";
 import ContainerComponent from "./Container";
-import React from "react";
-import Login from "../views/Pages/Login/Index";
 import Home from "../views/Pages/Home";
 import UnAuthorizedAccess from "../views/Pages/UnAuthorised";
 import PageNotFound from "../views/Pages/PageNotFound";
@@ -26,11 +24,11 @@ const RouteWrapper = ({ element }: { element: any }) => {
 
 function RouterComponent() {
   const routes = useRoutes([
-    {
+    /* {
       path: "/login",
       element: <Login />,
       caseSensitive: true,
-    },
+    }, */
     {
       path: "/",
       element: <RouteWrapper element={<Outlet />} />,
