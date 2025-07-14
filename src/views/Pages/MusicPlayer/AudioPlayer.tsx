@@ -159,6 +159,7 @@ export default function AudioPlayer() {
 
     setAudioCtx(ctx);
     setEqNodes(eq);
+    //console.log("eq", eq);
 
     // Resume context when play starts
     ctx.resume().then(() => {
@@ -188,7 +189,7 @@ export default function AudioPlayer() {
     <div className="fixed bottom-0 left-0 right-0 h-[15vh] bg-[#1b1b1f] border-t border-gray-800 flex items-center justify-between px-6 text-sm z-50">
       <div className="relative w-full max-w-4xl mx-auto">
         {/* Equalizer Popup */}
-        {showEqualizer && (
+        {showEqualizer && eqNodes.length > 0 && (
           <div className="absolute -top-70 left-0 right-0 mx-auto w-full bg-[#1e1e1e] rounded-lg p-6 z-20 shadow-xl">
             <h2 className="text-white font-semibold mb-4">Equalizer</h2>
             <div className="flex justify-between">
@@ -217,7 +218,7 @@ export default function AudioPlayer() {
           {/* Left: Song Info */}
           <div className="flex items-center gap-4">
             <img
-              src="./track_img.png"
+              src="./assets/track_img.png"
               alt="Album"
               className="w-12 h-12 rounded object-cover"
             />
@@ -234,19 +235,23 @@ export default function AudioPlayer() {
           <div className="flex-1 flex flex-col gap-2">
             <div className="flex items-center justify-center gap-4">
               {/* Previous button (not implemented) */}
-              <button className="text-gray-400 hover:text-white">
-                &#9198;
+              <button className="text-gray-400 " disabled>
+                <img src="./assets/prev-track.svg" />
               </button>
               {/* Play/Pause button */}
               <button
                 className="bg-white text-black rounded-full p-1.5 hover:scale-105 transition"
                 onClick={togglePlayPause}
               >
-                {isPlaying ? "❚❚" : "▶"}
+                {isPlaying ? (
+                  <img src="./assets/pause-btn.svg" />
+                ) : (
+                  <img src="./assets/play-btn.svg" />
+                )}
               </button>
               {/* Next button (not implemented) */}
-              <button className="text-gray-400 hover:text-white">
-                &#9197;
+              <button className="text-gray-400" disabled>
+                <img src="./assets/next-track.svg" />
               </button>
             </div>
 
@@ -270,7 +275,7 @@ export default function AudioPlayer() {
           {/* Right: Speed, Reverb, Equalizer, Volume */}
           <div className="flex items-center gap-3 relative">
             {/* Speed Button and Slider */}
-            <div className="relative">
+            <div className="relative flex">
               <button
                 onClick={toggleSpeedSlider}
                 className="text-sm text-white bg-gray-700 px-2 py-1 rounded hover:bg-gray-600"
@@ -296,6 +301,7 @@ export default function AudioPlayer() {
               {/* Reverb Toggle Button */}
               <button
                 onClick={toggleReverb}
+                title="Reverb"
                 className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-500"
               >
                 {reverbEnabled ? (
@@ -312,7 +318,7 @@ export default function AudioPlayer() {
               className="text-gray-400 hover:text-white text-xl"
               title="Equalizer"
             >
-              &#9776;
+              <img src="./assets/equalizer.svg" />
             </button>
 
             {/* Volume Control */}
