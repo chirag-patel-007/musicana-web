@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 //import { Slider } from "@/components/ui/slider";
 import { Slider } from "../../../components/ui/slider";
-
+// import audioData from "../../../assets/SoundHelix-Song-1.mp3"; // Adjust the path as needed
 const MusicPlayer = () => {
   const audioRef = useRef<HTMLVideoElement | null>(null);
   const [audioCtx, setAudioCtx] = useState<AudioContext | null>(null);
@@ -12,7 +12,8 @@ const MusicPlayer = () => {
   const [eqNodes, setEqNodes] = useState<BiquadFilterNode[]>([]);
   const [eqNodesValue, setEqNodesValue] = useState<BiquadFilterNode[]>([]);
   const [pitchRate, setPitchRate] = useState(1);
-
+const audioPath = '/SoundHelix-Song-1.mp3'; // Adjust the path as needed
+// const audioPath = '../../../assets/SoundHelix-Song-1.mp3'; // Adjust the path as needed
   useEffect(() => {
     console.log("audioCtx", audioCtx, audioRef.current);
     if (!audioCtx && audioRef.current) {
@@ -71,7 +72,7 @@ const MusicPlayer = () => {
   }, [eqNodes]);
 
   console.log("eqNodesValue >>>", eqNodesValue);
-
+console.log(audioPath, "audioPath");
   //https://sidechayn.sfo3.digitaloceanspaces.com/sidechayn/audio/01_Yes.mp3
   //https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3
 
@@ -101,7 +102,7 @@ const MusicPlayer = () => {
         }
       >
         <source
-          src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+          src={audioPath} // Adjust the path as needed
           type="audio/mpeg"
         />
       </audio>
