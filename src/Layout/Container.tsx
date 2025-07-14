@@ -15,7 +15,7 @@ function ContainerComponent(props: any) {
   } = theme.useToken();
   return (
     <Layout hasSider>
-      <Sidebar collapsed={collapsed} />
+      {/* <Sidebar collapsed={collapsed} /> */}
       <Layout style={{ height: "100%" }}>
         {/* <HeaderComponent collapsed={collapsed} setCollapsed={setCollapsed} /> */}
         <div /* className="h-100" */>
