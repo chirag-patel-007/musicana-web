@@ -24,9 +24,9 @@ export default function AudioPlayer() {
   } | null>(null);
 
   // Audio file URLs
-  const audioPath = "http://nel-dev-qa.s3.ap-south-1.amazonaws.com/audio2.mp3";
+  const audioPath = "https://nel-dev-qa.s3.ap-south-1.amazonaws.com/audio2.mp3";
   const reverbAudioPath =
-    "http://nel-dev-qa.s3.ap-south-1.amazonaws.com/room-audio.mp3";
+    "https://nel-dev-qa.s3.ap-south-1.amazonaws.com/room-audio.mp3";
 
   // When audio metadata loads, set duration
   const onLoadedMetadata = () => {
@@ -151,9 +151,7 @@ export default function AudioPlayer() {
 
     dryGain.gain.value = 1;
     wetGain.gain.value = 0; // Initially off
-    /* dryGain.gain.value = 0.7; // 70% dry
-    wetGain.gain.value = 0.3; // 30% reverb */
-
+   
     source.connect(dryGain).connect(ctx.destination);
     source.connect(convolver).connect(wetGain).connect(ctx.destination);
 
