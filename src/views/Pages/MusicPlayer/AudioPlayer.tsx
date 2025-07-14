@@ -3,6 +3,7 @@ import { Slider } from "../../../components/ui/slider";
 import { FaHeart } from "react-icons/fa";
 
 export default function AudioPlayer() {
+  // Reference to the progress bar div
   const progressRef = useRef<HTMLDivElement>(null);
 
   const [isPlaying, setIsPlaying] = useState(false);
@@ -22,10 +23,12 @@ export default function AudioPlayer() {
     wetGain: GainNode;
   } | null>(null);
 
+  // Audio file URLs
   const audioPath = "http://nel-dev-qa.s3.ap-south-1.amazonaws.com/audio2.mp3";
   const reverbAudioPath =
     "http://nel-dev-qa.s3.ap-south-1.amazonaws.com/audio1.wav";
 
+  // When audio metadata loads, set duration
   const onLoadedMetadata = () => {
     if (audioRef.current) {
       const seconds = audioRef.current.duration;
@@ -33,6 +36,7 @@ export default function AudioPlayer() {
     }
   };
 
+  // Format seconds as mm:ss
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60)
@@ -41,6 +45,7 @@ export default function AudioPlayer() {
     return `${minutes}:${seconds}`;
   };
 
+  // Play or pause audio
   const togglePlayPause = () => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -53,6 +58,7 @@ export default function AudioPlayer() {
     }
   };
 
+  // Update currentTime as audio plays
   const handleTimeUpdate = () => {
     const audio = audioRef.current;
     if (audio) {
@@ -60,6 +66,7 @@ export default function AudioPlayer() {
     }
   };
 
+  // Seek audio when progress bar is clicked
   const handleSeek = (e) => {
     if (!progressRef.current) return;
     const width = progressRef.current.clientWidth;
@@ -70,6 +77,7 @@ export default function AudioPlayer() {
     }
   };
 
+  // Change volume
   const handleVolumeChange = (e) => {
     const newVolume = parseFloat(e.target.value);
     if (audioRef.current) {
@@ -78,6 +86,7 @@ export default function AudioPlayer() {
     setVolume(newVolume);
   };
 
+  // Change playback speed
   const handlePlaybackRateChange = (e) => {
     const newRate = parseFloat(e.target.value);
     setPlaybackRate(newRate);
@@ -86,16 +95,19 @@ export default function AudioPlayer() {
     }
   };
 
+  // Show/hide speed slider
   const toggleSpeedSlider = () => {
     setShowSpeedSlider(!showSpeedSlider);
     setShowEqualizer(false);
   };
 
+  // Show/hide equalizer popup
   const toggleEqualizerPopup = () => {
     setShowEqualizer(!showEqualizer);
     setShowSpeedSlider(false);
   };
 
+  // Initialize Web Audio context, EQ, and reverb on first play
   const handleAudioInit = () => {
     if (!audioRef.current || audioCtx) return;
 
@@ -154,6 +166,7 @@ export default function AudioPlayer() {
     });
   };
 
+  // Change EQ band gain
   const handleEQChange = (index: number, value: number) => {
     if (eqNodes[index]) {
       eqNodes[index].gain.value = value;
@@ -161,6 +174,7 @@ export default function AudioPlayer() {
     }
   };
 
+  // Toggle reverb effect on/off
   const toggleReverb = () => {
     if (!convolverRef.current) return;
 
@@ -178,20 +192,7 @@ export default function AudioPlayer() {
           <div className="absolute -top-70 left-0 right-0 mx-auto w-full bg-[#1e1e1e] rounded-lg p-6 z-20 shadow-xl">
             <h2 className="text-white font-semibold mb-4">Equalizer</h2>
             <div className="flex justify-between">
-              {/* {["Bass", "Mid", "Treble"].map((band) => (
-                <div
-                  key={band}
-                  className="flex flex-col items-center text-white"
-                >
-                  <label className="mb-2">{band}</label>
-                  <input
-                    type="range"
-                    min="0"
-                    max="100"
-                    className="h-32 rotate-[-90deg]"
-                  />
-                </div>
-              ))} */}
+              {/* Render EQ sliders for each band */}
               {eqNodes.map((eqObj, i) => (
                 <div key={i} className="flex flex-col items-center text-white">
                   <label className="mb-2">({eqObj.frequency.value} Hz)</label>
@@ -229,18 +230,21 @@ export default function AudioPlayer() {
             <FaHeart className="ml-4 text-gray-400 cursor-pointer hover:text-red-500" />
           </div>
 
-          {/* Controls */}
+          {/* Center: Controls and Progress Bar */}
           <div className="flex-1 flex flex-col gap-2">
             <div className="flex items-center justify-center gap-4">
+              {/* Previous button (not implemented) */}
               <button className="text-gray-400 hover:text-white">
                 &#9198;
               </button>
+              {/* Play/Pause button */}
               <button
                 className="bg-white text-black rounded-full p-1.5 hover:scale-105 transition"
                 onClick={togglePlayPause}
               >
                 {isPlaying ? "❚❚" : "▶"}
               </button>
+              {/* Next button (not implemented) */}
               <button className="text-gray-400 hover:text-white">
                 &#9197;
               </button>
@@ -263,9 +267,9 @@ export default function AudioPlayer() {
             </div>
           </div>
 
-          {/* Right Controls */}
+          {/* Right: Speed, Reverb, Equalizer, Volume */}
           <div className="flex items-center gap-3 relative">
-            {/* Speed Button */}
+            {/* Speed Button and Slider */}
             <div className="relative">
               <button
                 onClick={toggleSpeedSlider}
@@ -275,6 +279,7 @@ export default function AudioPlayer() {
                 {playbackRate}x
               </button>
 
+              {/* Speed Slider Popup */}
               {showSpeedSlider && (
                 <div className="absolute top-10 left-0 w-24 bg-gray-800 p-2 rounded shadow">
                   <input
@@ -288,6 +293,7 @@ export default function AudioPlayer() {
                   />
                 </div>
               )}
+              {/* Reverb Toggle Button */}
               <button
                 onClick={toggleReverb}
                 className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-500"
@@ -309,7 +315,7 @@ export default function AudioPlayer() {
               &#9776;
             </button>
 
-            {/* Volume */}
+            {/* Volume Control */}
             <span className="text-white">&#128266;</span>
             <input
               type="range"

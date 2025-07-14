@@ -15,24 +15,8 @@ function ContainerComponent(props: any) {
   } = theme.useToken();
   return (
     <Layout hasSider>
-      {/* <Sidebar collapsed={collapsed} /> */}
       <Layout style={{ height: "100%" }}>
-        {/* <HeaderComponent collapsed={collapsed} setCollapsed={setCollapsed} /> */}
-        <div /* className="h-100" */>
-          {/* <Content
-            style={{
-              margin: "16px 16px",
-              padding: 16,
-              minHeight: 280,
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
-              marginBottom: 100,
-            }}
-          > */}
-          {children}
-          {/* </Content> */}
-        </div>
-        {/* <FooterComponent /> */}
+        <div>{children}</div>
       </Layout>
     </Layout>
   );

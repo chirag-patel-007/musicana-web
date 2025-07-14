@@ -6,7 +6,7 @@ import {
   EditOutlined,
 } from "@ant-design/icons";
 import { Button, Layout, theme } from "antd";
-import {  useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { NavLink } from "react-router";
 
 import React from "react";
@@ -17,23 +17,15 @@ function HeaderComponent(props: any) {
   const [isOpen, setIsOpen] = useState(false);
   const actionsRef = useRef<HTMLDivElement | null>(null);
 
-  // const { data, error, isLoading, refetch } = useGetProfileQuery();
-  // debugger
-  // console.log("data, error, isLoading ", data, error, isLoading);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
 
   const onLogout = () => {
     console.log("onLogout");
-    // persistor.purge();
-    // dispatch(logout());
-    window.dispatchEvent(new Event("logout")); // Dispatch event
+    window.dispatchEvent(new Event("logout"));
   };
 
-  // useEffect(() => {
-  //   refetch();
-  // }, []);
   return (
     <Header
       style={{

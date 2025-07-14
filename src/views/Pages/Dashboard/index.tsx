@@ -85,7 +85,7 @@ export default function MusicDashboard() {
                 key={i}
                 className="flex justify-between items-center py-2 border-b border-gray-700"
               >
-                <span>{1+i++}</span>
+                <span>{1 + i++}</span>
                 <div className="flex items-center gap-2">
                   <img src={ele.img} alt="Song" className="w-10 h-10 rounded" />
                   <div>
