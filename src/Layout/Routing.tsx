@@ -36,12 +36,12 @@ function RouterComponent() {
       children: [
         {
           path: "/",
-          element: <Home />,
+          element: <Dashboard />,
           caseSensitive: true,
         },
         {
           path: "/home",
-          element: <Home />,
+          element: <Dashboard />,
           caseSensitive: true,
         },
         {
@@ -50,13 +50,8 @@ function RouterComponent() {
           caseSensitive: true,
         },
         {
-          path: "/explorer",
-          element: <Dashboard />,
-          caseSensitive: true,
-        },
-        {
           path: "/*",
-          element: <PageNotFound />,
+          element: <Dashboard />,
         },
       ],
     },
