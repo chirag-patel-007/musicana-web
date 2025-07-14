@@ -145,57 +145,6 @@ export default function MusicDashboard() {
           </div>
         </div>
       </div>
-      <div className="fixed bottom-0 left-0 right-0 h-[15vh] bg-[#1b1b1f] border-t border-gray-800 flex items-center justify-between px-6 text-sm z-50">
-        {/* Left: Song Info */}
-        <div className="flex items-center gap-4">
-          <img
-            src="https://via.placeholder.com/50"
-            alt="Album"
-            className="w-12 h-12 rounded object-cover"
-          />
-          <div>
-            <p className="text-white font-semibold text-sm">Stay</p>
-            <p className="text-gray-400 text-xs">
-              The Kid LAROI, Justin Bieber
-            </p>
-          </div>
-          <FaHeart className="ml-4 text-gray-400 cursor-pointer hover:text-red-500" />
-        </div>
-
-        {/* Middle: Player Controls + Progress Bar */}
-        <div className="flex flex-col items-center gap-1 w-[40%]">
-          {/* Controls */}
-          <div className="flex items-center gap-5">
-            <button className="text-gray-400 hover:text-white">⤭</button>
-            <button className="text-gray-400 hover:text-white">⏮</button>
-            <button className="bg-white text-black rounded-full p-1.5 hover:scale-105 transition">
-              ▶
-            </button>
-            <button className="text-gray-400 hover:text-white">⏭</button>
-            <button className="text-green-500">🔁</button>
-          </div>
-          {/* Progress */}
-          <div className="flex items-center gap-2 w-full">
-            <span className="text-xs text-gray-400">4:07</span>
-            <div className="flex-1 h-1 bg-gray-600 rounded overflow-hidden">
-              <div className="h-full w-[50%] bg-purple-500 animate-pulse" />
-            </div>
-            <span className="text-xs text-gray-400">5:10</span>
-          </div>
-        </div>
-
-        {/* Right: Volume + Extra Controls */}
-        <div className="flex items-center gap-4">
-          <span className="text-gray-400 text-xs">1x</span>
-          <span className="text-gray-400">📝</span>
-          <span className="text-gray-400">📃</span>
-          <span className="text-gray-400">👁️</span>
-          {/* Volume bar */}
-          <div className="w-24 h-1 bg-gray-600 rounded">
-            <div className="h-full w-[60%] bg-white" />
-          </div>
-        </div>
-      </div>
       <AudioPlayer />
     </div>
   );

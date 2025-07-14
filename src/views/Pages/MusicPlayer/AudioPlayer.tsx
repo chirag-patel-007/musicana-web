@@ -16,8 +16,15 @@ export default function AudioPlayer() {
   const [audioCtx, setAudioCtx] = useState<AudioContext | null>(null);
   const [eqNodes, setEqNodes] = useState<BiquadFilterNode[]>([]);
   const [pitchRate, setPitchRate] = useState(1);
+  const [reverbEnabled, setReverbEnabled] = useState(false);
+  const convolverRef = useRef<{
+    convolver: ConvolverNode;
+    wetGain: GainNode;
+  } | null>(null);
 
   const audioPath = "http://nel-dev-qa.s3.ap-south-1.amazonaws.com/audio2.mp3";
+  const reverbAudioPath =
+    "http://nel-dev-qa.s3.ap-south-1.amazonaws.com/audio1.wav";
 
   const onLoadedMetadata = () => {
     if (audioRef.current) {
@@ -116,6 +123,28 @@ export default function AudioPlayer() {
     eq[eq.length - 1].connect(gain);
     gain.connect(ctx.destination);
 
+    //Reverb code
+    const convolver = ctx.createConvolver();
+
+    // Load impulse response for reverb
+    fetch(reverbAudioPath)
+      .then((res) => res.arrayBuffer())
+      .then((arrayBuffer) => ctx.decodeAudioData(arrayBuffer))
+      .then((impulseBuffer) => {
+        convolver.buffer = impulseBuffer;
+      });
+
+    const dryGain = ctx.createGain();
+    const wetGain = ctx.createGain();
+
+    dryGain.gain.value = 1;
+    wetGain.gain.value = 0; // Initially off
+
+    source.connect(dryGain).connect(ctx.destination);
+    source.connect(convolver).connect(wetGain).connect(ctx.destination);
+
+    convolverRef.current = { convolver, wetGain };
+
     setAudioCtx(ctx);
     setEqNodes(eq);
 
@@ -130,6 +159,15 @@ export default function AudioPlayer() {
       eqNodes[index].gain.value = value;
       setEqNodes([...eqNodes]);
     }
+  };
+
+  const toggleReverb = () => {
+    if (!convolverRef.current) return;
+
+    const { wetGain } = convolverRef.current;
+    const isEnabled = wetGain.gain.value > 0;
+    wetGain.gain.value = isEnabled ? 0 : 1;
+    setReverbEnabled(!isEnabled);
   };
 
   return (
@@ -178,7 +216,7 @@ export default function AudioPlayer() {
           {/* Left: Song Info */}
           <div className="flex items-center gap-4">
             <img
-              src="https://via.placeholder.com/50"
+              src="./track_img.png"
               alt="Album"
               className="w-12 h-12 rounded object-cover"
             />
@@ -250,6 +288,12 @@ export default function AudioPlayer() {
                   />
                 </div>
               )}
+              <button
+                onClick={toggleReverb}
+                className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-500"
+              >
+                {reverbEnabled ? "Disable Reverb" : "Enable Reverb"}
+              </button>
             </div>
 
             {/* Equalizer Button */}
