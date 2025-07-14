@@ -1,13 +1,7 @@
 import { Button, Result } from "antd";
-import React from "react";
 import { Navigate, NavLink } from "react-router-dom";
-// import { useAppState } from "../context";
 
 const UnAuthorizedAccess = () => {
-  //   const { isLoggedIn, getLatestToken } = useAppState("auth");
-  //   const { accessToken } = getLatestToken();
-
-  //   const validLogin = /* accessToken && isLoggedIn; */
   const validLogin = true;
 
   return !validLogin ? (
