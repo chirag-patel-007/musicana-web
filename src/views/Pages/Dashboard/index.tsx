@@ -31,9 +31,17 @@ export default function MusicDashboard() {
           placeholder="Search here..."
           className="bg-[#1f1f24] p-2 rounded w-1/2 text-sm text-white"
         />
-        <div className="flex items-center gap-2">
-          <span>Mia Hartley</span>
-          <div className="w-8 h-8 rounded-full bg-white" />
+        <div className="flex items-center gap-4">
+          <div className="w-8 h-8 rounded-full bg-white">
+            <img src="./assets/Ellipse.svg" alt="" />
+          </div>
+          <span className="text-white">Mia Hartley</span>
+          <span>
+            <img src="./assets/heart.svg" alt="" />
+          </span>
+          <span>
+            <img src="./assets/settings.svg" alt="" />
+          </span>
         </div>
       </div>
       <div className="flex h-[75vh] bg-[#121216] overflow-auto">
