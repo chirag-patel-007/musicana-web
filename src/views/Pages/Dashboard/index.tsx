@@ -31,9 +31,17 @@ export default function MusicDashboard() {
           placeholder="Search here..."
           className="bg-[#1f1f24] p-2 rounded w-1/2 text-sm text-white"
         />
-        <div className="flex items-center gap-2">
-          <span>Mia Hartley</span>
-          <div className="w-8 h-8 rounded-full bg-white" />
+        <div className="flex items-center gap-4">
+          <div className="w-8 h-8 rounded-full bg-white">
+            <img src="./assets/Ellipse.svg" alt="" />
+          </div>
+          <span className="text-white">Mia Hartley</span>
+          <span>
+            <img src="./assets/heart.svg" alt="" />
+          </span>
+          <span>
+            <img src="./assets/settings.svg" alt="" />
+          </span>
         </div>
       </div>
       <div className="flex h-[75vh] bg-[#121216] overflow-auto">
@@ -44,8 +52,8 @@ export default function MusicDashboard() {
           {/* Trending Now Section */}
           <h2 className="text-xl font-semibold mb-2">Trending Now</h2>
           <div className="flex gap-4 mb-6">
-            {[0, 1, 2, 3].map((i) => (
-              <SongCard key={i} highlighted={i === 1} />
+            {[{ id: 1, song: "Baby", artist: "Justin Bieber" }].map((item) => (
+              <SongCard item={item} key={item.id} highlighted={item.id === 1} />
             ))}
           </div>
 

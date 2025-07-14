@@ -4,9 +4,14 @@ import { FiMoreHorizontal } from "react-icons/fi";
 
 type Props = {
   highlighted?: boolean; // Optional: highlight this card
+  item: {
+    id: number;
+    song: string;
+    artist: string;
+  };
 };
 
-export default function SongCard({ highlighted }: Props) {
+export default function SongCard({ highlighted, item }: Props) {
   return (
     <div
       className={`w-48  rounded-md ${
@@ -15,15 +20,15 @@ export default function SongCard({ highlighted }: Props) {
     >
       {/* Song Cover Image */}
       <img
-        src="./assets/ImageA2.svg"
+        src="./assets/Justin-Bieber-Baby.webp"
         alt="Song"
         className="rounded-md mb-2 w-48"
       />
 
       <div className="p-3">
         {/* Song and Artist Info */}
-        <p className="text-sm font-semibold">Song name</p>
-        <p className="text-xs text-gray-400">Artist name</p>
+        <p className="text-sm font-semibold">Song name:  {item.song}</p>
+        <p className="text-xs text-gray-400">Artist name: {item.artist}</p>
 
         {/* Likes and Menu */}
         <div className="flex justify-between items-center mt-1 text-xs">
