@@ -22,46 +22,47 @@ export default function MusicDashboard() {
   const [activeTab, setActiveTab] = useState("Songs");
 
   return (
-    <div className="flex h-screen bg-[#121216]">
-      {/* Main Content */}
-      <div className="flex-1 p-6 overflow-auto text-white">
-        {/* Search Bar & Profile */}
-        <div className="flex justify-between items-center mb-4">
-          <input
-            type="text"
-            placeholder="Search here..."
-            className="bg-[#1f1f24] p-2 rounded w-1/2 text-sm text-white"
-          />
-          <div className="flex items-center gap-2">
-            <span>Mia Hartley</span>
-            <div className="w-8 h-8 rounded-full bg-white" />
+    <div className="bg-[#121216]">
+      <div className="flex justify-between items-center p-4 h-[10vh]">
+        <input
+          type="text"
+          placeholder="Search here..."
+          className="bg-[#1f1f24] p-2 rounded w-1/2 text-sm text-white"
+        />
+        <div className="flex items-center gap-2">
+          <span>Mia Hartley</span>
+          <div className="w-8 h-8 rounded-full bg-white" />
+        </div>
+      </div>
+      <div className="flex h-[75vh] bg-[#121216] overflow-auto">
+        {/* Main Content */}
+        <div className="flex-1 py-2 px-4 overflow-auto text-white">
+          {/* Search Bar & Profile */}
+
+          {/* Trending Now Section */}
+          <h2 className="text-xl font-semibold mb-2">Trending Now</h2>
+          <div className="flex gap-4 mb-6">
+            {[0, 1, 2, 3].map((i) => (
+              <SongCard key={i} highlighted={i === 1} />
+            ))}
           </div>
-        </div>
 
-        {/* Trending Now Section */}
-        <h2 className="text-xl font-semibold mb-2">Trending Now</h2>
-        <div className="flex gap-4 mb-6">
-          {[0, 1, 2, 3].map((i) => (
-            <SongCard key={i} highlighted={i === 1} />
-          ))}
-        </div>
-
-        {/* You Will Love Section */}
-        <h2 className="text-xl font-semibold mb-2">You will Love</h2>
-        <div className="flex gap-4 mb-4 text-sm border-b border-gray-700 pb-2">
-          {[
-            "All",
-            "Songs",
-            "Albums",
-            "Artists",
-            "Playlists",
-            "Genres",
-            "Liked",
-          ].map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)} // assuming you track active tab
-              className={`relative px-2 py-1 hover:text-blue-400 !bg-transparent transition-colors duration-200
+          {/* You Will Love Section */}
+          <h2 className="text-xl font-semibold mb-2">You will Love</h2>
+          <div className="flex gap-4 mb-4 text-sm border-b border-gray-700 pb-2">
+            {[
+              "All",
+              "Songs",
+              "Albums",
+              "Artists",
+              "Playlists",
+              "Genres",
+              "Liked",
+            ].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)} // assuming you track active tab
+                className={`relative px-2 py-1 hover:text-blue-400 !bg-transparent transition-colors duration-200
                 focus:outline-none focus-visible:outline-none
                 ${
                   activeTab === tab
@@ -69,81 +70,81 @@ export default function MusicDashboard() {
                     : ""
                 }
               `}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
 
-        {/* Song List */}
-        <div className="space-y-2">
-          {[0, 1, 2].map((i) => (
-            <div
-              key={i}
-              className="flex justify-between items-center py-2 border-b border-gray-700"
-            >
-              <span>#1</span>
-              <div className="flex items-center gap-2">
-                <img
-                  src="https://via.placeholder.com/40"
-                  alt="Song"
-                  className="w-10 h-10 rounded"
-                />
-                <div>
-                  <p>Song name</p>
+          {/* Song List */}
+          <div className="space-y-2">
+            {[0, 1, 2].map((i) => (
+              <div
+                key={i}
+                className="flex justify-between items-center py-2 border-b border-gray-700"
+              >
+                <span>#1</span>
+                <div className="flex items-center gap-2">
+                  <img
+                    src="https://via.placeholder.com/40"
+                    alt="Song"
+                    className="w-10 h-10 rounded"
+                  />
+                  <div>
+                    <p>Song name</p>
+                  </div>
                 </div>
+                <p>
+                  <p className="text-xs">Artist name</p>
+                </p>
+                <p>3:33</p>
+                <div className="flex items-center gap-2">
+                  <span>128</span>
+                  <FaHeart className="text-blue-400" />
+                </div>
+                <FiMoreHorizontal />
               </div>
-              <p>
-                <p className="text-xs">Artist name</p>
-              </p>
-              <p>3:33</p>
-              <div className="flex items-center gap-2">
-                <span>128</span>
-                <FaHeart className="text-blue-400" />
-              </div>
-              <FiMoreHorizontal />
-            </div>
-          ))}
-        </div>
-      </div>
-      {/* Right Sidebar - Recently Played and Categories */}
-      <div className="w-72 bg-[#1b1b1f] p-4 border-l border-gray-800 text-white flex flex-col">
-        <div>
-          <h2 className="text-lg mb-3">Recently Played</h2>
-          {recentlyPlayed.map((item, index) => (
-            <div
-              key={item.id}
-              className={`flex items-center gap-2 mb-3 p-2 rounded cursor-pointer ${
-                index === 1 ? "bg-[#2f2f35]" : ""
-              }`}
-            >
-              <img
-                src={item.img}
-                className="w-10 h-10 rounded"
-                alt={item.songname}
-              />
-              <div className="flex-1">
-                <p className="text-sm">{item.songname}</p>
-                <p className="text-xs text-gray-400">{item.artistname}</p>
-              </div>
-              <div className="w-2 h-2">
-                {/* <img src={playButton} alt="" /> */}
-              </div>
-            </div>
-          ))}
-        </div>
-        {/* Categories Section */}
-        <div className="mt-6">
-          <h2 className="text-lg mb-2">Categories</h2>
-          <div className="flex flex-wrap gap-2">
-            {categories.map((cat, idx) => (
-              <CategoryTag key={idx} {...cat} />
             ))}
           </div>
         </div>
+        {/* Right Sidebar - Recently Played and Categories */}
+        <div className="w-72 bg-[#1b1b1f] p-4 border-l border-gray-800 text-white flex flex-col overflow-auto">
+          <div>
+            <h2 className="text-lg mb-3">Recently Played</h2>
+            {recentlyPlayed.map((item, index) => (
+              <div
+                key={item.id}
+                className={`flex items-center gap-2 mb-3 p-2 rounded cursor-pointer ${
+                  index === 1 ? "bg-[#2f2f35]" : ""
+                }`}
+              >
+                <img
+                  src={item.img}
+                  className="w-10 h-10 rounded"
+                  alt={item.songname}
+                />
+                <div className="flex-1">
+                  <p className="text-sm">{item.songname}</p>
+                  <p className="text-xs text-gray-400">{item.artistname}</p>
+                </div>
+                <div className="w-2 h-2">
+                  {/* <img src={playButton} alt="" /> */}
+                </div>
+              </div>
+            ))}
+          </div>
+          {/* Categories Section */}
+          <div className="mt-6">
+            <h2 className="text-lg mb-2">Categories</h2>
+            <div className="flex flex-wrap gap-2">
+              {categories.map((cat, idx) => (
+                <CategoryTag key={idx} {...cat} />
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div className="fixed bottom-0 left-0 right-0 h-20 bg-[#1b1b1f] border-t border-gray-800 flex items-center justify-between px-6 text-sm z-50">
+      <div className="fixed bottom-0 left-0 right-0 h-[15vh] bg-[#1b1b1f] border-t border-gray-800 flex items-center justify-between px-6 text-sm z-50">
         {/* Left: Song Info */}
         <div className="flex items-center gap-4">
           <img
