@@ -52,8 +52,8 @@ export default function MusicDashboard() {
           {/* Trending Now Section */}
           <h2 className="text-xl font-semibold mb-2">Trending Now</h2>
           <div className="flex gap-4 mb-6">
-            {[0, 1, 2, 3].map((i) => (
-              <SongCard key={i} highlighted={i === 1} />
+            {[{ id: 1, song: "Baby", artist: "Justin Bieber" }].map((item) => (
+              <SongCard item={item} key={item.id} highlighted={item.id === 1} />
             ))}
           </div>
 
